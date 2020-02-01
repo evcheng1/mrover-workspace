@@ -117,6 +117,59 @@
             "right"
         ]
     ],
+    "DriveStateCmd": [
+        [
+            "int8_t",
+            "controller",
+            ""
+        ],
+        [
+            "int8_t",
+            "state",
+            ""
+        ]
+    ],
+    "DriveStateData": [
+        [
+            "int8_t",
+            "controller",
+            ""
+        ],
+        [
+            "int8_t",
+            "state",
+            ""
+        ]
+    ],
+    "DriveVelCmd": [
+        [
+            "int8_t",
+            "axis",
+            ""
+        ],
+        [
+            "float",
+            "vel",
+            ""
+        ]
+    ],
+    "DriveVelData": [
+        [
+            "int8_t",
+            "axis",
+            ""
+        ],
+        [
+            "float",
+            "measuredCurrent",
+            ""
+        ],
+        [
+            "float",
+            "estimatedVel",
+            ""
+        ]
+    ],
     "ESCThrottle": [
         [
             "string",
@@ -213,6 +266,30 @@
         [
             "double",
             "speed"
+        ]
+    ],
+    "GimbalCmd": [
+        [
+            "double",
+            "pitch[2]",
+            ""
+        ],
+        [
+            "double",
+            "yaw[2]",
+            ""
+        ]
+    ],
+    "HandCmd": [
+        [
+            "double",
+            "finger",
+            ""
+        ],
+        [
+            "double",
+            "grip",
+            ""
         ]
     ],
     "Heartbeat": [
@@ -343,6 +420,16 @@
             "enable"
         ]
     ],
+    "MosfetCmd": [
+        [
+            "string",
+            "id"
+        ],
+        [
+            "boolean",
+            "state"
+        ]
+    ],
     "MotionExecute": [
         [
             "boolean",
@@ -380,6 +467,107 @@
         [
             "int32_t",
             "total_tbs"
+        ]
+    ],
+    "ODrive_Bridge_Pub_Encoders": [
+        [
+            "string",
+            "controller"
+        ],
+        [
+            ""
+        ],
+        [
+            "float",
+            "measuredCurrent"
+        ],
+        [
+            "float",
+            "estvel"
+        ],
+        [
+            "string",
+            "axis",
+            ""
+        ]
+    ],
+    "ODrive_Bridge_Pub_State": [
+        [
+            "string",
+            "controller"
+        ],
+        [
+            ""
+        ],
+        [
+            "int8_t",
+            "state"
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ]
+    ],
+    "ODrive_Bridge_Req_State": [
+        [
+            "string",
+            "controller"
+        ],
+        [
+            ""
+        ],
+        [
+            "int8_t",
+            "requestState"
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ],
+        [
+            ""
+        ]
+    ],
+    "ODrive_Bridge_Req_Vel": [
+        [
+            "string",
+            "controller"
+        ],
+        [
+            ""
+        ],
+        [
+            "string",
+            "motor"
+        ],
+        [
+            "float",
+            "vel"
         ]
     ],
     "Obstacle": [
@@ -512,6 +700,51 @@
             "depths[numDepths]"
         ]
     ],
+    "RAClosedLoopCmd": [
+        [
+            "double",
+            "torque",
+            "[6]",
+            ""
+        ],
+        [
+            "double",
+            "angle",
+            "[6]",
+            ""
+        ]
+    ],
+    "RAConfigCmd": [
+        [
+            "double",
+            "Kp",
+            "[6]"
+        ],
+        [
+            "double",
+            "Ki",
+            "[6]"
+        ],
+        [
+            "double",
+            "Kd",
+            "[6]"
+        ]
+    ],
+    "RAOpenLoopCmd": [
+        [
+            "double",
+            "throttle[6]",
+            ""
+        ]
+    ],
+    "RAPosData": [
+        [
+            "double",
+            "angle",
+            "[6]"
+        ]
+    ],
     "RGB": [
         [
             "string",
@@ -542,6 +775,37 @@
             "on"
         ]
     ],
+    "SAClosedLoopCmd": [
+        [
+            "double",
+            "torque",
+            "[3]",
+            ""
+        ],
+        [
+            "double",
+            "angle",
+            "[3]",
+            ""
+        ]
+    ],
+    "SAConfigCmd": [
+        [
+            "double",
+            "Kp",
+            "[3]"
+        ],
+        [
+            "double",
+            "Ki",
+            "[3]"
+        ],
+        [
+            "double",
+            "Kd",
+            "[3]"
+        ]
+    ],
     "SAMotors": [
         [
             "double",
@@ -570,6 +834,26 @@
         [
             "double",
             "micro_z"
+        ]
+    ],
+    "SAOpenLoopCmd": [
+        [
+            "double",
+            "throttle[3]",
+            ""
+        ]
+    ],
+    "SAPosData": [
+        [
+            "double",
+            "angle",
+            "[3]",
+            ""
+        ]
+    ],
+    "SAZeroTrigger": [
+        [
+            ""
         ]
     ],
     "SensorPackage": [
@@ -644,6 +928,17 @@
             "degrees"
         ]
     ],
+    "ServoCmd": [
+        [
+            "string",
+            "id"
+        ],
+        [
+            "double",
+            "position",
+            ""
+        ]
+    ],
     "SetDemand": [
         [
             "int8_t",
@@ -665,6 +960,12 @@
             "sim_mode"
         ]
     ],
+    "SpectralCmd": [
+        [
+            "int8_t",
+            "id"
+        ]
+    ],
     "StartTest": [
         [
             "string",
@@ -683,6 +984,17 @@
         [
             "boolean",
             "enable_sa"
+        ]
+    ],
+    "Target": [
+        [
+            "double",
+            "distance"
+        ],
+        [
+            "double",
+            "bearing",
+            ""
         ]
     ],
     "TargetAngles": [
@@ -711,7 +1023,13 @@
             "f"
         ]
     ],
-    "TargetPoint": [
+    "TargetList": [
+        [
+            "Target",
+            "targetList[2]"
+        ]
+    ],
+    "TargetOrientation": [
         [
             "float",
             "x"
@@ -723,6 +1041,18 @@
         [
             "float",
             "z"
+        ],
+        [
+            "float",
+            "alpha"
+        ],
+        [
+            "float",
+            "beta"
+        ],
+        [
+            "float",
+            "gamma"
         ]
     ],
     "Temperature": [
@@ -739,21 +1069,6 @@
             "tboard_temp"
         ]
     ],
-    "TennisBall": [
-        [
-            "boolean",
-            "found"
-        ],
-        [
-            "double",
-            "bearing",
-            ""
-        ],
-        [
-            "double",
-            "distance"
-        ]
-    ],
     "TestEnable": [
         [
             "int8_t",
@@ -764,10 +1079,21 @@
             "enabled"
         ]
     ],
+    "ThermistorData": [
+        [
+            "double",
+            "temperature",
+            ""
+        ]
+    ],
     "Waypoint": [
         [
             "boolean",
             "search"
+        ],
+        [
+            "boolean",
+            "gate"
         ],
         [
             "Odometry",
@@ -868,11 +1194,17 @@
         "CurrentDraw",
         "DebugMessage",
         "DriveMotors",
+        "DriveStateCmd",
+        "DriveStateData",
+        "DriveVelCmd",
+        "DriveVelData",
         "Encoder",
         "ESCThrottle",
         "ESCToggle",
         "FKTransform",
+        "GimbalCmd",
         "GPS",
+        "HandCmd",
         "Heartbeat",
         "IkArmControl",
         "IkEnabled",
@@ -883,34 +1215,52 @@
         "MicroCam",
         "Microscope",
         "Mosfet",
+        "MosfetCmd",
         "MotionExecute",
         "NavStatus",
         "Obstacle",
         "Odometry",
+        "ODrive_Bridge_Pub_Encoders",
+        "ODrive_Bridge_Pub_State",
+        "ODrive_Bridge_Req_State",
+        "ODrive_Bridge_Req_Vel",
         "OpenLoopRAMotor",
         "PiCamera",
         "PIDConstants",
         "PiPicture",
         "PiSettings",
         "ProximitySensors",
+        "RAClosedLoopCmd",
+        "RAConfigCmd",
+        "RAOpenLoopCmd",
+        "RAPosData",
         "RGB",
         "RGBFrame",
         "RGBLED",
+        "SAClosedLoopCmd",
+        "SAConfigCmd",
         "SAMotors",
+        "SAOpenLoopCmd",
+        "SAPosData",
+        "SAZeroTrigger",
         "SensorPackage",
         "Sensors",
         "SensorSwitch",
         "Servo",
+        "ServoCmd",
         "SetDemand",
         "Signal",
         "SimulationMode",
+        "SpectralCmd",
         "StartTest",
         "TalonConfig",
+        "Target",
         "TargetAngles",
-        "TargetPoint",
+        "TargetList",
+        "TargetOrientation",
         "Temperature",
-        "TennisBall",
         "TestEnable",
+        "ThermistorData",
         "Waypoint",
         "WheelSpeeds",
         "Xbox"

@@ -8,6 +8,33 @@
       <Checkbox v-bind:name="'Toggle UV Lights'" v-on:toggle="setPart('uv_leds', $event)"/>
       <Checkbox ref="rgb" v-bind:name="'Toggle RGB Sensor Lights'" v-on:toggle="setRGBLeds($event)"/>
     </div>
+    <div class="spectrometerInput">
+      <input type="number" v-model="id">
+      <button v-on:click="sendSpectralCmd(id)">Spectrometer ID</button>
+    </div>
+    <div class = "spectrometerOutput">
+      <span>
+        r: {{spectralData.r}}<br>
+        g: {{spectralData.g}}<br>
+        a: {{spectralData.a}}<br>
+        s: {{spectralData.s}}<br>
+        h: {{spectralData.h}}<br>
+        b: {{spectralData.b}}<br>
+        t: {{spectralData.t}}<br>
+        i: {{spectralData.i}}<br>
+        c: {{spectralData.c}}<br>
+        u: {{spectralData.u}}<br>
+        j: {{spectralData.j}}<br>
+        d: {{spectralData.d}}<br>
+        v: {{spectralData.v}}<br>
+        k: {{spectralData.k}}<br>
+        e: {{spectralData.e}}<br>
+        w: {{spectralData.w}}<br>
+        l: {{spectralData.l}}<br>
+        f: {{spectralData.f}}
+
+      </span>
+    </div>
     <div class="flex">
       <SASiteControls v-bind:site="2"/>
     </div>
@@ -43,6 +70,21 @@
     justify-items: center;
   }
 
+  .spectrometerInput {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    justify-items: center;
+  }
+
+  .spectrometerOutput {
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid black;
+    height: 60px;
+    width: 60px;
+    overflow: auto
+  }
+
 </style>
 
 <script>
@@ -52,7 +94,27 @@
   export default {
     data() {
       return {
-
+        spectralData: {
+          r: 0,
+          g: 0,
+          a: 0, 
+          s: 0,
+          h: 0, 
+          b: 0,
+          t: 0,
+          i: 0,
+          c: 0,
+          u: 0,
+          j: 0,
+          d: 0,
+          v: 0,
+          k: 0,
+          e: 0,
+          w: 0,
+          l: 0,
+          f: 0
+        },
+        id: 0
       }
     },
 
@@ -76,6 +138,12 @@
           'enable': enabled
         })
       },
+      
+      sendSpectralCmd: function(id) {
+        this.$parent.publish("/triad_trigger",
+         {'type' : "SpectralCmd",
+           'id' : Number(id)})
+      },
 
       setRGBLeds: function(enabled) {
         this.$parent.publish("/rgb_leds", {
@@ -92,6 +160,12 @@
           obj.disabled = false;
         }, 2000);
       }
+    },
+
+    created: function() {
+      this.$parent.subscribe('triad_data', (msg) => {
+      this.spectralData = msg
+      })
     },
 
     components: {
