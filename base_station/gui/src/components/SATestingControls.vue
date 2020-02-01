@@ -8,6 +8,33 @@
       <Checkbox v-bind:name="'Toggle UV Lights'" v-on:toggle="setPart('uv_leds', $event)"/>
       <Checkbox ref="rgb" v-bind:name="'Toggle RGB Sensor Lights'" v-on:toggle="setRGBLeds($event)"/>
     </div>
+    <div class="spectrometerInput">
+      <input type="number" v-model="id">
+      <button v-on:click="sendSpectralCmd(id)">Spectrometer ID</button>
+    </div>
+    <div class = "spectrometerOutput">
+      <span>
+        r: {{spectralData.r}}<br>
+        g: {{spectralData.g}}<br>
+        a: {{spectralData.a}}<br>
+        s: {{spectralData.s}}<br>
+        h: {{spectralData.h}}<br>
+        b: {{spectralData.b}}<br>
+        t: {{spectralData.t}}<br>
+        i: {{spectralData.i}}<br>
+        c: {{spectralData.c}}<br>
+        u: {{spectralData.u}}<br>
+        j: {{spectralData.j}}<br>
+        d: {{spectralData.d}}<br>
+        v: {{spectralData.v}}<br>
+        k: {{spectralData.k}}<br>
+        e: {{spectralData.e}}<br>
+        w: {{spectralData.w}}<br>
+        l: {{spectralData.l}}<br>
+        f: {{spectralData.f}}
+
+      </span>
+    </div>
     <div class="flex">
       <SASiteControls v-bind:site="2"/>
     </div>
