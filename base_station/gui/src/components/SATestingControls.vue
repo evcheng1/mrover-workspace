@@ -8,12 +8,12 @@
       <Checkbox v-bind:name="'Toggle UV Lights'" v-on:toggle="setPart('uv_leds', $event)"/>
       <Checkbox ref="rgb" v-bind:name="'Toggle RGB Sensor Lights'" v-on:toggle="setRGBLeds($event)"/>
     </div>
+    <div class="flex">
+      <SASiteControls v-bind:site="2"/>
+    </div>
     <div class="spectrometerInput">
       <input type="number" v-model="id">
       <button v-on:click="sendSpectralCmd(id)">Spectrometer ID</button>
-    </div>
-    <div class="flex">
-      <SASiteControls v-bind:site="2"/>
     </div>
     <div class="spectrometerOutput">
       <span>
@@ -88,15 +88,18 @@
     margin-left : 10px;
     grid-template-rows: 1fr 1fr 1fr;
     justify-items: center;
+    padding: 40px;
   }
 
   .spectrometerOutput {
+    display: grid;
+    grid-template-rows: 1fr;
     border-radius: 5px;
-    padding: 10px;
     border: 1px solid black;
     height: 60px;
-    width: 60px;
-    overflow: auto
+    width: 100px;
+    overflow: auto;
+    margin-left : 10px;
   }
 
 </style>
@@ -113,9 +116,9 @@
         spectralData: {
           r: 0,
           g: 0,
-          a: 0, 
+          a: 0,
           s: 0,
-          h: 0, 
+          h: 0,
           b: 0,
           t: 0,
           i: 0,
