@@ -91,17 +91,6 @@
     padding: 40px;
   }
 
-  .spectrometerOutput {
-    display: grid;
-    grid-template-rows: 1fr;
-    border-radius: 5px;
-    border: 1px solid black;
-    height: 60px;
-    width: 100px;
-    overflow: auto;
-    margin-left : 10px;
-  }
-
 </style>
 
 <script>
@@ -113,7 +102,7 @@
       return {
         id: 0,
 
-        spectralData: {
+        SpectralData: {
           r: 0,
           g: 0,
           a: 0,
