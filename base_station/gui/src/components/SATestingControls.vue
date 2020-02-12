@@ -15,6 +15,9 @@
       <input type="number" v-model="id">
       <button v-on:click="sendSpectralCmd(id)">Spectrometer ID</button>
     </div>
+    <div class="flex">
+      <button ref="raman" class="button" v-on:click="sendCollect($event)"> <span>Raman Test</span> </button>
+    </div>
     <div class="spectrometerOutput">
       <span>
         r: {{SpectralData.r}}<br>
@@ -35,11 +38,7 @@
         w: {{SpectralData.w}}<br>
         l: {{SpectralData.l}}<br>
         f: {{SpectralData.f}}
-
       </span>
-    </div>
-    <div class="flex">
-      <button ref="raman" class="button" v-on:click="sendCollect($event)"> <span>Raman Test</span> </button>
     </div>
   </div>
 </template>
@@ -79,13 +78,12 @@
 
   .spectrometerOutput {
     display: grid;
-    grid-template-rows: 1fr;
     border-radius: 5px;
     border: 1px solid black;
     height: 60px;
     width: 100px;
     overflow: auto;
-    margin-left : 10px;
+    margin-left : 125px;
     grid-template-rows: 1fr 1fr 1fr;
     justify-items: center;
     padding: 40px;

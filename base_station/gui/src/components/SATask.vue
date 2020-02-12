@@ -155,7 +155,8 @@ export default {
         {'topic': '/nav_status', 'type': 'NavStatus'},
         {'topic': '/sa_motors', 'type': 'SAMotors'},
         {'topic': '/test_enable', 'type': 'TestEnable'},
-        {'topic': '/debugMessage', 'type': 'DebugMessage'}
+        {'topic': '/debugMessage', 'type': 'DebugMessage'},
+        {'topic': '/triad_data', 'type': 'SpectralData'}
       ]
     )
 
