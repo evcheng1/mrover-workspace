@@ -16,6 +16,7 @@
     <div class="spectrometerInput">
       <input type="number" v-model="id">
       <button v-on:click="sendSpectralCmd(id)">Spectrometer ID</button>
+    </div>
     <div class="box">
       <h4>GPS Data</h4>
       Latitude: {{gps_data.latitude_deg}}<br>
