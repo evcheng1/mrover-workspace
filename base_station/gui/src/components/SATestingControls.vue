@@ -40,6 +40,11 @@
         f: {{SpectralData.f}}
       </span>
     </div>
+    <div class="deviceToggles">
+      <template v-for="id in 10">
+        <Checkbox v-bind:name="id - 1" v-on:toggle="setDevice(id - 1, $event)"/>
+      </template>
+    </div>
   </div>
 </template>
 
@@ -48,7 +53,7 @@
     display: grid;
     grid-gap: 10px;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
   }
 
   .box {
@@ -69,9 +74,16 @@
     justify-items: center;
   }
 
+  .deviceToggles {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+                        1fr 1fr 1fr 1fr 1fr;
+    justify-items: center;   
+  }
+
   .spectrometerInput {
     display: grid;
-    grid-template-rows: 1fr;
+    grid-template-rows: 1fr 1fr 1fr 1fr;
     justify-items: center;
     padding: 40px;
   }
@@ -83,10 +95,9 @@
     height: 60px;
     width: 100px;
     overflow: auto;
-    margin-left : 125px;
-    grid-template-rows: 1fr 1fr 1fr;
+    margin-left : 90px;
+    grid-template-rows: 1fr;
     justify-items: center;
-    padding: 40px;
   }
 
 </style>
@@ -141,6 +152,14 @@
           'type': 'Mosfet',
           'id': id,
           'enable': enabled
+        })
+      },
+
+      setDevice: function(id, enabled) {
+        this.$parent.publish("/mosfet_cmd", {
+          'type': 'MosfetCmd',
+          'device': Number(id),
+          'enable' : enabled
         })
       },
       
