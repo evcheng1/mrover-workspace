@@ -3,6 +3,7 @@
     <div class="flex">
       <SASiteControls v-bind:site="1"/>
     </div>
+    <!--
     <div class="led-toggles">
       <Checkbox v-bind:name="'Toggle Backlights'" v-on:toggle="setPart('backlights', $event)"/>
       <Checkbox v-bind:name="'Toggle UV Lights'" v-on:toggle="setPart('uv_leds', $event)"/>
@@ -10,12 +11,42 @@
       <Checkbox v-bind:name="'Turn Mosfet On/Off'" v-on:toggle="turnOnMosfet($event, '1')"/>
       
     </div>
+    -->
+    <div class="temperatureBox">
+      <span>
+        Temperature: {{thermistor_data.temperature}}<br>
+      </span>
+    </div>
     <div class="flex">
       <SASiteControls v-bind:site="2"/>
     </div>
-    <div class="spectrometerInput">
-      <input type="number" v-model="id">
-      <button v-on:click="sendSpectralCmd(id)">Spectrometer ID</button>
+    <div class="spectrometerBox">
+      <div class="spectrometerInput">
+        <input type="number" v-model="id">
+        <button v-on:click="sendSpectralCmd(id)">Get Spectral Data</button>
+      </div>
+      <div class="spectrometerOutput">
+        <span>
+          r: {{SpectralData.r}}<br>
+          g: {{SpectralData.g}}<br>
+          a: {{SpectralData.a}}<br>
+          s: {{SpectralData.s}}<br>
+          h: {{SpectralData.h}}<br>
+          b: {{SpectralData.b}}<br>
+          t: {{SpectralData.t}}<br>
+          i: {{SpectralData.i}}<br>
+          c: {{SpectralData.c}}<br>
+          u: {{SpectralData.u}}<br>
+          j: {{SpectralData.j}}<br>
+          d: {{SpectralData.d}}<br>
+          v: {{SpectralData.v}}<br>
+          k: {{SpectralData.k}}<br>
+          e: {{SpectralData.e}}<br>
+          w: {{SpectralData.w}}<br>
+          l: {{SpectralData.l}}<br>
+          f: {{SpectralData.f}}
+        </span>
+      </div>
     </div>
     <div class="box">
       <h4>GPS Data</h4>
@@ -26,41 +57,19 @@
       Bearing: {{gps_data.bearing_deg}}<br>
       Speed: {{gps_data.speed}}
     </div>
-    <div class="flex">
+    <!-- <div class="flex">
       <button ref="raman" class="button" v-on:click="sendCollect($event)"> <span>Raman Test</span> </button>
       <button v-on:click="sendGPSData()">GPS Data</button>
-    </div>
-    <div class="flex">
-      <span>
-      Temperature: {{thermistor_data.temperature}}
-      </span>
-    </div>
-    <div class="spectrometerOutput">
-      <span>
-        r: {{SpectralData.r}}<br>
-        g: {{SpectralData.g}}<br>
-        a: {{SpectralData.a}}<br>
-        s: {{SpectralData.s}}<br>
-        h: {{SpectralData.h}}<br>
-        b: {{SpectralData.b}}<br>
-        t: {{SpectralData.t}}<br>
-        i: {{SpectralData.i}}<br>
-        c: {{SpectralData.c}}<br>
-        u: {{SpectralData.u}}<br>
-        j: {{SpectralData.j}}<br>
-        d: {{SpectralData.d}}<br>
-        v: {{SpectralData.v}}<br>
-        k: {{SpectralData.k}}<br>
-        e: {{SpectralData.e}}<br>
-        w: {{SpectralData.w}}<br>
-        l: {{SpectralData.l}}<br>
-        f: {{SpectralData.f}}
-      </span>
-    </div>
-    <div class="deviceToggles">
+    </div> -->
+    <div class="box">
+      <div class="center">
+        <h4>Mosfet Devices</h4>
+      </div>
+      <div class="deviceToggles">
       <template v-for="id in 10">
-        <Checkbox v-bind:name="id - 1" v-on:toggle="setDevice(id - 1, $event)"/>
+          <Checkbox v-bind:name="id - 1" v-on:toggle="setDevice(id - 1, $event)"/>
       </template>
+      </div>
     </div>
   </div>
 </template>
@@ -74,6 +83,7 @@
   }
 
   .box {
+    height: 200px;
     border-radius: 5px;
     padding: 10px;
     border: 1px solid black;
@@ -84,37 +94,56 @@
     align-items: center;
     justify-content: center;
   }
-
-  .led-toggles {
+  
+  /* .led-toggles {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     justify-items: center;
-  }
+  } */
 
   .deviceToggles {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr
-                        1fr 1fr 1fr 1fr 1fr;
-    justify-items: center;   
+    display: flex;
+  }
+
+
+  .spectrometerBox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid black;
   }
 
   .spectrometerInput {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr 1fr;
     justify-items: center;
-    padding: 40px;
+    padding-right: 10px;
   }
 
   .spectrometerOutput {
-    display: grid;
-    border-radius: 5px;
-    border: 1px solid black;
-    height: 60px;
-    width: 100px;
+    height: 200px;
+    width: 80px;
     overflow: auto;
-    margin-left : 90px;
     grid-template-rows: 1fr;
     justify-items: center;
+    padding: 10px;
+  }
+
+  .temperatureBox {
+    height: 200px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid black;    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .center {
+    text-align: center;
   }
 
 </style>
@@ -178,10 +207,14 @@
     created: function () {
       this.$parent.subscribe('/thermistor_data', (msg) => {
         this.thermistor_data = msg
-      }),
+      })
 
       this.$parent.subscribe('/gps_data', (msg) => {
         this.gps_data = msg
+      })
+
+      this.$parent.subscribe('/triad_data', (msg) => { 
+        this.SpectralData = msg
       })
     },
 
@@ -215,14 +248,14 @@
         })
       },
 
-      sendCollect: function (button) {
-        this.$parent.publish("/raman_collect", {"type": "Signal"})
-        let obj = this.$refs["raman"]
-        obj.disabled = true
-        setTimeout(function() {
-          obj.disabled = false;
-        }, 2000);
-      },
+      // sendCollect: function (button) {
+      //   this.$parent.publish("/raman_collect", {"type": "Signal"})
+      //   let obj = this.$refs["raman"]
+      //   obj.disabled = true
+      //   setTimeout(function() {
+      //     obj.disabled = false;
+      //   }, 2000);
+      // },
 
       turnOnMosfet: function (enabled, id) {
         this.$parent.publish("/mosfet_cmd", {
@@ -231,18 +264,6 @@
           'state': enabled
         })
       },
-
-      sendGPSData: function() {
-        this.$parent.publish("/gps_data", {
-          'GPS': GPS,
-        })
-      }
-    },
-
-    created: function() {
-      this.$parent.subscribe('/triad_data', (msg) => { 
-        this.SpectralData = msg
-      })
     },
 
     components: {
